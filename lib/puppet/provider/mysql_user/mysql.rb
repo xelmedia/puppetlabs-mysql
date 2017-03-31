@@ -96,7 +96,7 @@ Puppet::Type.type(:mysql_user).provide(:mysql, :parent => Puppet::Provider::Mysq
 
   def destroy
     merged_name = @resource[:name].sub('@', "'@'")
-    mysql([defaults_file, system_database, '-e', "DROP USER '#{merged_name}'"].compact)
+    mysql([defaults_file, system_database, '-e', "DROP USER IF EXISTS'#{merged_name}'"].compact)
 
     @property_hash.clear
     exists? ? (return false) : (return true)

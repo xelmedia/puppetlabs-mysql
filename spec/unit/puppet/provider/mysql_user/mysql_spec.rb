@@ -188,7 +188,7 @@ usvn_user@localhost
 
   describe 'destroy' do
     it 'removes a user if present' do
-      provider.expects(:mysql).with([defaults_file, system_database, '-e', "DROP USER 'joe'@'localhost'"])
+      provider.expects(:mysql).with([defaults_file, system_database, '-e', "DROP USER IF EXISTS 'joe'@'localhost'"])
       provider.expects(:exists?).returns(false)
       expect(provider.destroy).to be_truthy
     end
