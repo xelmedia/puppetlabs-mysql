@@ -39,6 +39,7 @@ class mysql::server::config {
       content                 => template('mysql/my.cnf.erb'),
       mode                    => '0644',
       selinux_ignore_defaults => true,
+      notify => Class['mysql::server::service'],
     }
 
     # on mariadb systems, $includedir is not defined, but /etc/my.cnf.d has
